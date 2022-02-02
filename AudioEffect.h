@@ -47,7 +47,7 @@ namespace AuxPort
 	public:
 /*===================================================================================*/
 /*
-	[Constructor] Safely Deallocates the memory
+	[Constructor] Safely Allocates the memory
 */
 		Effect<bufferType, effectType>() = default;
 /*===================================================================================*/
@@ -64,9 +64,9 @@ namespace AuxPort
 /*
 	[Function] Set your Control Addresses (DONT MESS WITH IT)
 */
-		void push(effectType* parameterAddress)
+		void push(void* parameterAddress, const boundVariableType& dataType)
 		{
-			_controls.push_back(parameterAddress);
+			_controls.push_back({parameterAddress,dataType});
 		}
 /*===================================================================================*/
 /*
@@ -80,17 +80,34 @@ namespace AuxPort
 			*/
 			/*===================================================================================*/
 			return frameValue;
+						
 		}
 	private:
-		std::vector<effectType*> _controls;
 /*===================================================================================*/
 /*
 	[Function] Gets the Control from our nice dandy vector of pointers (DONT MESS WITH IT)
 */
 		effectType getControl(const int& i)
 		{
-			return *_controls[i];
+			Parameters para = _controls[i];
+			if (para._dataType == boundVariableType::kFloat)
+				return *static_cast<float*>(para._parameterAddress);
+			if (para._dataType == boundVariableType::kDouble)
+				return *static_cast<double*>(para._parameterAddress);
+			if (para._dataType == boundVariableType::kInt)
+				return *static_cast<int*>(para._parameterAddress);
+			if (para._dataType == boundVariableType::kUInt)
+				return *static_cast<uint32_t*>(para._parameterAddress);
 		}
+
+		struct Parameters
+		{
+			void* _parameterAddress;
+			boundVariableType _dataType;
+		};
+
+		std::vector<Parameters> _controls;
+
 	};
 
 }
