@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{ED3E6A75-15A9-4D9B-B020-8EC23FAF5600}</ProjectGuid>
+    <RootNamespace>RafxTwo</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:/Users/91956/AppData/Roaming/RackAFX 7.0/PlugIns/$(ProjectName).rafx2/Contents/winOS/</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)\build\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)\build\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:/Users/91956/AppData/Roaming/RackAFX 7.0/PlugIns/$(ProjectName).rafx2/Contents/winOS/</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)\build\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)\build\</IntDir>
+    <ExtensionsToDeleteOnClean Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">*.cdf;*.cache;*.obj;*.ilk;*.resources;*.tlb;*.tli;*.tlh;*.tmp;*.rsp;*.pgc;*.pgd;*.meta;*.tlog;*.manifest;*.pch;*.exp;*.idb;*.rep;*.xdc;*_manifest.rc;*.bsc;*.sbr;*.xml</ExtensionsToDeleteOnClean>
+    <ExtensionsToDeleteOnClean Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">*.cdf;*.cache;*.obj;*.ilk;*.resources;*.tlb;*.tli;*.tlh;*.tmp;*.rsp;*.pgc;*.pgd;*.meta;*.tlog;*.manifest;*.pch;*.exp;*.idb;*.rep;*.xdc;*_manifest.rc;*.bsc;*.sbr;*.xml</ExtensionsToDeleteOnClean>
+    <ExtensionsToDeleteOnClean Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">*.cdf;*.cache;*.obj;*.ilk;*.resources;*.tlb;*.tli;*.tlh;*.tmp;*.rsp;*.pgc;*.pgd;*.meta;*.tlog;*.manifest;*.pch;*.exp;*.idb;*.rep;*.xdc;*_manifest.rc;*.bsc;*.sbr;*.xml</ExtensionsToDeleteOnClean>
+    <ExtensionsToDeleteOnClean Condition="'$(Configuration)|$(Platform)'=='Release|x64'">*.cdf;*.cache;*.obj;*.ilk;*.resources;*.tlb;*.tli;*.tlh;*.tmp;*.rsp;*.pgc;*.pgd;*.meta;*.tlog;*.manifest;*.pch;*.exp;*.idb;*.rep;*.xdc;*_manifest.rc;*.bsc;*.sbr;*.xml</ExtensionsToDeleteOnClean>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <TargetExt>.rafx2</TargetExt>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <TargetExt>.rafx2</TargetExt>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <TargetExt>.rafx2</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <TargetExt>.rafx2</TargetExt>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <PreprocessorDefinitions>VSTGUI_DIRECT2D_SUPPORT=1;WIN32;_WINDLL;_WINDOWS;VSTGUI_LIVE_EDITING=1;RAFXPLUGIN=1;WINDOWS=1;DEVELOPMENT=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
+      <AdditionalIncludeDirectories>..\PluginKernel;..\PluginObjects; ..\CustomControls; ..\FFTW; ..\..\vstgui4</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>C:/Users/91956/AppData/Roaming/RackAFX 7.0/PlugIns/$(ProjectName).rafx2/Contents/winOS/$(ProjectName)$(TargetExt)</OutputFile>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <ModuleDefinitionFile>
+      </ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(IntDir)$(TargetName).pdb</ProgramDatabaseFile>
+      <TargetMachine>MachineX86</TargetMachine>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+      <LinkTimeCodeGeneration>Default</LinkTimeCodeGeneration>
+      <ImportLibrary>$(IntDir)$(TargetName).lib</ImportLibrary>
+      <AdditionalLibraryDirectories>..\PluginObjects;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+    <PostBuildEvent>
+      <Command>setlocal
+          if not exist "C:/Users/91956/AppData/Roaming/RackAFX 7.0/PlugIns/DCOffsetv3.rafx2/desktop.ini" echo f | xcopy /f /y /h "C:/ROOT/RackFX/Projects/DCOffsetv3/RAFX2 WinBuild/desktop.ini" "C:/Users/91956/AppData/Roaming/RackAFX 7.0/PlugIns/DCOffsetv3.rafx2/desktop.ini"
+          if %errorlevel% neq 0 goto :cmEnd
+          if not exist "C:/Users/91956/AppData/Roaming/RackAFX 7.0/PlugIns/DCOffsetv3.rafx2/rafx16.ico" echo f | xcopy /f /y /h "C:/ROOT/RackFX/Projects/DCOffsetv3/RAFX2 WinBuild/rafx16.ico" "C:/Users/91956/AppData/Roaming/RackAFX 7.0/PlugIns/DCOffsetv3.rafx2/rafx16.ico"
+          if %errorlevel% neq 0 goto :cmEnd
+          if not exist "C:/Users/91956/AppData/Roaming/RackAFX 7.0/PlugIns/DCOffsetv3.rafx2/Contents/Resources" mkdir "C:/Users/91956/AppData/Roaming/RackAFX 7.0/PlugIns/DCOffsetv3.rafx2/Contents/Resources"
+          if %errorlevel% neq 0 goto :cmEnd
+          echo f | xcopy /f /y /h "C:/ROOT/RackFX/Projects/DCOffsetv3/Resources/PluginGUI.uidesc" "C:/Users/91956/AppData/Roaming/RackAFX 7.0/PlugIns/DCOffsetv3.rafx2/Contents/Resources/PluginGUI.uidesc"
+	  if %errorlevel% neq 0 goto :cmEnd
+          attrib +s "C:/Users/91956/AppData/Roaming/RackAFX 7.0/PlugIns/DCOffsetv3.rafx2/desktop.ini"
+          if %errorlevel% neq 0 goto :cmEnd
+          attrib +s "C:/Users/91956/AppData/Roaming/RackAFX 7.0/PlugIns/DCOffsetv3.rafx2/rafx16.ico"
+          if %errorlevel% neq 0 goto :cmEnd
+          attrib +s "C:/Users/91956/AppData/Roaming/RackAFX 7.0/PlugIns/DCOffsetv3.rafx2"
+          if %errorlevel% neq 0 goto :cmEnd
+          :cmEnd
+          endlocal
+        </Command>
+      <Message>Generate Bundle</Message>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <PreprocessorDefinitions>RAFXPLUGIN=1;_WINDLL;_WINDOWS;WIN32=1;WINDOWS=1;DEVELOPMENT=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <AdditionalIncludeDirectories>..\PluginKernel; ..\CustomControls; ..\FFTW; ..\..\vstgui4</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <ModuleDefinitionFile>
+      </ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(IntDir)$(TargetName).pdb</ProgramDatabaseFile>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+      <LinkTimeCodeGeneration>Default</LinkTimeCodeGeneration>
+      <ImportLibrary>$(IntDir)$(TargetName).lib</ImportLibrary>
+      <AdditionalLibraryDirectories>..\PluginObjects;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <PreprocessorDefinitions>VSTGUI_DIRECT2D_SUPPORT=1;WIN32;_WINDLL;_WINDOWS;RAFXPLUGIN=1;WINDOWS=1;RELEASE=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <AdditionalIncludeDirectories>..\PluginKernel;..\PluginObjects; ..\CustomControls; ..\FFTW; ..\..\vstgui4</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>C:/Users/91956/AppData/Roaming/RackAFX 7.0/PlugIns/$(ProjectName).rafx2/Contents/winOS/$(ProjectName)$(TargetExt)</OutputFile>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <ModuleDefinitionFile>
+      </ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(IntDir)$(TargetName).pdb</ProgramDatabaseFile>
+      <TargetMachine>MachineX86</TargetMachine>
+      <LinkTimeCodeGeneration>Default</LinkTimeCodeGeneration>
+      <ImportLibrary>$(IntDir)$(TargetName).lib</ImportLibrary>
+      <AdditionalLibraryDirectories>..\PluginObjects;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+    <PostBuildEvent>
+      <Command>setlocal
+          if not exist "C:/Users/91956/AppData/Roaming/RackAFX 7.0/PlugIns/DCOffsetv3.rafx2/desktop.ini" echo f | xcopy /f /y /h "C:/ROOT/RackFX/Projects/DCOffsetv3/RAFX2 WinBuild/desktop.ini" "C:/Users/91956/AppData/Roaming/RackAFX 7.0/PlugIns/DCOffsetv3.rafx2/desktop.ini"
+          if %errorlevel% neq 0 goto :cmEnd
+          if not exist "C:/Users/91956/AppData/Roaming/RackAFX 7.0/PlugIns/DCOffsetv3.rafx2/rafx16.ico" echo f | xcopy /f /y /h "C:/ROOT/RackFX/Projects/DCOffsetv3/RAFX2 WinBuild/rafx16.ico" "C:/Users/91956/AppData/Roaming/RackAFX 7.0/PlugIns/DCOffsetv3.rafx2/rafx16.ico"
+          if %errorlevel% neq 0 goto :cmEnd
+          if not exist "C:/Users/91956/AppData/Roaming/RackAFX 7.0/PlugIns/DCOffsetv3.rafx2/Contents/Resources" mkdir "C:/Users/91956/AppData/Roaming/RackAFX 7.0/PlugIns/DCOffsetv3.rafx2/Contents/Resources"
+          if %errorlevel% neq 0 goto :cmEnd
+          echo f | xcopy /f /y /h "C:/ROOT/RackFX/Projects/DCOffsetv3/Resources/PluginGUI.uidesc" "C:/Users/91956/AppData/Roaming/RackAFX 7.0/PlugIns/DCOffsetv3.rafx2/Contents/Resources/PluginGUI.uidesc"
+	  if %errorlevel% neq 0 goto :cmEnd
+          attrib +s "C:/Users/91956/AppData/Roaming/RackAFX 7.0/PlugIns/DCOffsetv3.rafx2/desktop.ini"
+          if %errorlevel% neq 0 goto :cmEnd
+          attrib +s "C:/Users/91956/AppData/Roaming/RackAFX 7.0/PlugIns/DCOffsetv3.rafx2/rafx16.ico"
+          if %errorlevel% neq 0 goto :cmEnd
+          attrib +s "C:/Users/91956/AppData/Roaming/RackAFX 7.0/PlugIns/DCOffsetv3.rafx2"
+          if %errorlevel% neq 0 goto :cmEnd
+          :cmEnd
+          endlocal
+        </Command>
+      <Message>Generate Bundle</Message>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <PreprocessorDefinitions>RAFXPLUGIN=1;_WINDLL;_WINDOWS;WIN32=1;WINDOWS=1;RELEASE=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <AdditionalIncludeDirectories>..\PluginKernel; ..\CustomControls; ..\FFTW; ..\..\vstgui4</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <ModuleDefinitionFile>
+      </ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(IntDir)$(TargetName).pdb</ProgramDatabaseFile>
+      <LinkTimeCodeGeneration>Default</LinkTimeCodeGeneration>
+      <ImportLibrary>$(IntDir)$(TargetName).lib</ImportLibrary>
+      <AdditionalLibraryDirectories>..\PluginObjects;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\vstgui4\vstgui\vstgui_uidescription_win32.cpp" />
+    <ClCompile Include="..\..\vstgui4\vstgui\vstgui_win32.cpp" />
+    <ClCompile Include="..\CustomControls\customcontrols.cpp" />
+    <ClCompile Include="..\CustomControls\customviews.cpp" />
+    <ClCompile Include="..\PluginKernel\pluginbase.cpp" />
+    <ClCompile Include="..\PluginKernel\plugincore.cpp" />
+    <ClCompile Include="..\PluginKernel\plugingui.cpp" />
+    <ClCompile Include="..\PluginKernel\pluginparameter.cpp" />
+    <ClCompile Include="..\PluginObjects\fxobjects.cpp" />
+    <ClCompile Include="..\RAFX2 Source\RackAFXDLL.cpp" />
+    <ClCompile Include="..\RAFX2 Source\Rafx2Plugin.cpp" />
+    <ClCompile Include="..\RAFX2 Source\Rafx2PluginBase.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\CustomControls\atomicops.h" />
+    <ClInclude Include="..\CustomControls\customcontrols.h" />
+    <ClInclude Include="..\CustomControls\readerwriterqueue.h" />
+    <ClInclude Include="..\CustomControls\customviews.h" />
+    <ClInclude Include="..\PluginKernel\AudioEffect.h" />
+    <ClInclude Include="..\PluginKernel\guiconstants.h" />
+    <ClInclude Include="..\PluginKernel\pluginbase.h" />
+    <ClInclude Include="..\PluginKernel\plugincore.h" />
+    <ClInclude Include="..\PluginKernel\plugindescription.h" />
+    <ClInclude Include="..\PluginKernel\plugingui.h" />
+    <ClInclude Include="..\PluginKernel\pluginparameter.h" />
+    <ClInclude Include="..\PluginKernel\pluginstructures.h" />
+    <ClInclude Include="..\PluginObjects\fxobjects.h" />
+    <ClInclude Include="..\PluginObjects\filters.h" />
+    <ClInclude Include="..\RAFX2 Source\RackAFXDLL.h" />
+    <ClInclude Include="..\RAFX2 Source\Rafx2Plugin.h" />
+    <ClInclude Include="..\RAFX2 Source\Rafx2PluginBase.h" />
+    <ClInclude Include="..\Resources\resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Resources\PluginGUI.uidesc">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="PluginGUIMain.rc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
