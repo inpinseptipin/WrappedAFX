@@ -79,7 +79,17 @@ namespace AuxPort
 				Write DSP Algorithm here
 			*/
 			/*===================================================================================*/
-			
+			int switches = getControl((int)controlID::m_uMySwitchVariable);
+			if (switches == 1)
+			{
+				setControlValue(2 / kPi * atan(2 * frameValue),(int)controlID::Meter);
+				return 2 / kPi * atan(2 * frameValue);
+			}
+			else
+			{
+				setControlValue(frameValue, (int)controlID::meter2);
+				return frameValue;
+			}
 		}
 	private:
 /*===================================================================================*/
