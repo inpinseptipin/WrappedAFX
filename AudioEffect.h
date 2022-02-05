@@ -57,16 +57,16 @@ namespace AuxPort
 		~Effect<bufferType, effectType>() = default;
 /*===================================================================================*/
 /*
-	[Copy Constructor] Safely Copies memory from one Volume Object to another
+	[Copy Constructor] Safely Copies memory from one Effect Object to another
 */
 		Effect<bufferType, effectType>(const Effect<bufferType, effectType>& kernel) = default;
 /*===================================================================================*/
 /*
 	[Function] Set your Control Addresses (DONT MESS WITH IT)
 */
-		void push(void* parameterAddress, const boundVariableType& dataType)
+		void push(void* parameterAddress, const boundVariableType& dataType,int controlNumber)
 		{
-			_controls.push_back({parameterAddress,dataType});
+			_controls.push_back({parameterAddress,dataType,controlNumber});
 		}
 /*===================================================================================*/
 /*
@@ -79,8 +79,17 @@ namespace AuxPort
 				Write DSP Algorithm here
 			*/
 			/*===================================================================================*/
-			return frameValue;
-						
+			int switches = getControl((int)controlID::m_uMySwitchVariable);
+			if (switches == 1)
+			{
+				setControlValue(2 / kPi * atan(2 * frameValue),(int)controlID::Meter);
+				return 2 / kPi * atan(2 * frameValue);
+			}
+			else
+			{
+				setControlValue(frameValue, (int)controlID::meter2);
+				return frameValue;
+			}
 		}
 	private:
 /*===================================================================================*/
@@ -89,21 +98,51 @@ namespace AuxPort
 */
 		effectType getControl(const int& i)
 		{
-			Parameters para = _controls[i];
-			if (para._dataType == boundVariableType::kFloat)
-				return *static_cast<float*>(para._parameterAddress);
-			if (para._dataType == boundVariableType::kDouble)
-				return *static_cast<double*>(para._parameterAddress);
-			if (para._dataType == boundVariableType::kInt)
-				return *static_cast<int*>(para._parameterAddress);
-			if (para._dataType == boundVariableType::kUInt)
-				return *static_cast<uint32_t*>(para._parameterAddress);
+			Parameters* para;
+			for (size_t j = 0; i < _controls.size(); j++)
+			{
+				para = &_controls[j];
+				if (para->controlNumber == i)
+				{
+					if (para->_dataType == boundVariableType::kFloat)
+						return *static_cast<float*>(para->_parameterAddress);
+					if (para->_dataType == boundVariableType::kDouble)
+						return *static_cast<double*>(para->_parameterAddress);
+					if (para->_dataType == boundVariableType::kInt)
+						return *static_cast<int*>(para->_parameterAddress);
+					if (para->_dataType == boundVariableType::kUInt)
+						return *static_cast<uint32_t*>(para->_parameterAddress);
+				}
+			}
+		}
+
+		void setControlValue(const double& newValue,const int& i)
+		{
+			Parameters* para;
+			for (size_t j = 0; j < _controls.size(); j++)
+			{
+				para = &_controls[j];
+				if (para->controlNumber == i)
+				{
+					if (para->_dataType == boundVariableType::kFloat)
+						*static_cast<float*>(para->_parameterAddress) = static_cast<float>(newValue);
+					else if (para->_dataType == boundVariableType::kDouble)
+						*static_cast<double*>(para->_parameterAddress) = newValue;
+					else if (para->_dataType == boundVariableType::kInt)
+						*static_cast<int*>(para->_parameterAddress) = static_cast<int>(newValue);
+					else if (para->_dataType == boundVariableType::kUInt)
+						*static_cast<uint32_t*>(para->_parameterAddress) = static_cast<uint32_t>(newValue);
+					break;
+				}
+
+			}		
 		}
 
 		struct Parameters
 		{
 			void* _parameterAddress;
 			boundVariableType _dataType;
+			int controlNumber;
 		};
 
 		std::vector<Parameters> _controls;
