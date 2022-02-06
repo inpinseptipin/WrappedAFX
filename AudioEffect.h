@@ -89,7 +89,7 @@ namespace AuxPort
 		effectType getControl(const int& i)
 		{
 			Parameters* para;
-			for (size_t j = 0; i < _controls.size(); j++)
+			for (size_t j = 0; j < _controls.size(); j++)
 			{
 				para = &_controls[j];
 				if (para->controlNumber == i)
