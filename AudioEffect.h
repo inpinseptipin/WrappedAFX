@@ -39,8 +39,52 @@
 #include <vector>
 #include <math.h>
 #include "plugincore.h"
+#include "fxobjects.h"
 namespace AuxPort
 {
+/*===================================================================================*/
+/*
+	[Class] Abstraction over AudioFilter class in FXObjects [Don't Mess with it]
+*/
+	template<class bufferType, class effectType>
+	class Filter
+	{
+	public:
+		Filter() = default;
+		Filter(const Filter& filter) = default;
+		void setFilterType(const filterAlgorithm& type)
+		{
+			filterParameters.algorithm = type;
+		}
+		void setParameters(const effectType& centerFrequency, const effectType& QFactor, const effectType& boostCut)
+		{
+			filterParameters.Q = QFactor;
+			filterParameters.fc = centerFrequency;
+			filterParameters.boostCut_dB = boostCut < 0 ? boostCut : raw2dB(boostCut);
+			filter.setParameters(filterParameters);
+		}
+		bufferType process(const bufferType& frame)
+		{
+			return filter.processAudioSample(frame);
+		}
+		~Filter() = default;
+	private:
+		AudioFilter filter;
+		AudioFilterParameters filterParameters;
+
+	};
+
+/*===================================================================================*/
+/*
+	[Struct] Simple Struct for handling two channel Frames [DON'T MESS WITH IT]
+*/
+	template<class bufferType>
+	struct Frame
+	{
+		bufferType left;
+		bufferType right;
+	};
+
 	template<class bufferType, class effectType>
 	class Effect
 	{
@@ -70,26 +114,51 @@ namespace AuxPort
 		}
 /*===================================================================================*/
 /*
+	[Function] Use this to update your FX objects before the processing block
+*/
+		void prepareToPlay(const bufferType& sampleRate)
+		{
+			/*
+				Update Internal Parameters of your FX Objects here
+			*/
+		}
+/*===================================================================================*/
+/*
 	[Function] Implement your Frame DSP Logic here
 */
-		bufferType run(const bufferType& frameValue) 
-		{
+		void run(Frame<bufferType>& frame)
+		{	
+			/*===================================================================================*/
+			/*
+				Making a copy of the input Frame (Dont Mess with it)
+			*/
+			/*===================================================================================*/
+
+			bufferType leftChannel = frame.left;
+			bufferType rightChannel = frame.right;
+			/*===================================================================================*/
 			/*===================================================================================*/
 			/*
 				Write DSP Algorithm here
 			*/
 			/*===================================================================================*/
-			int switches = getControl((int)controlID::m_uMySwitchVariable);
-			if (switches == 1)
-			{
-				setControlValue(2 / kPi * atan(2 * frameValue),(int)controlID::Meter);
-				return 2 / kPi * atan(2 * frameValue);
-			}
-			else
-			{
-				setControlValue(frameValue, (int)controlID::meter2);
-				return frameValue;
-			}
+			/*
+				Start
+			*/
+			
+
+
+			/*
+				End
+			*/
+			/*===================================================================================*/
+			/*===================================================================================*/
+			/*
+				Save your processed Samples back to the Frame (Dont Mess with it)
+			*/
+			/*===================================================================================*/
+			frame.left = leftChannel;
+			frame.right = rightChannel;
 		}
 	private:
 /*===================================================================================*/
@@ -115,7 +184,10 @@ namespace AuxPort
 				}
 			}
 		}
-
+/*===================================================================================*/
+/*
+	[Function] Use this function to Update your meters
+*/
 		void setControlValue(const double& newValue,const int& i)
 		{
 			Parameters* para;
@@ -144,10 +216,14 @@ namespace AuxPort
 			boundVariableType _dataType;
 			int controlNumber;
 		};
-
 		std::vector<Parameters> _controls;
-
+		
 	};
+
+
+
+
+	
 
 }
 #endif

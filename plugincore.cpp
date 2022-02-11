@@ -164,7 +164,7 @@ bool PluginCore::processAudioFrame(ProcessFrameInfo& processFrameInfo)
 	//     you may name it what you like - this is where GUI control values are cooked
 	//     for the DSP algorithm at hand
 	// updateParameters();
-
+	kernel.prepareToPlay(audioProcDescriptor.sampleRate);
 
     // --- decode the channelIOConfiguration and process accordingly
     //
@@ -185,7 +185,10 @@ bool PluginCore::processAudioFrame(ProcessFrameInfo& processFrameInfo)
        processFrameInfo.channelIOConfig.outputChannelFormat == kCFMono)
     {
 		// --- pass through code: change this with your signal processing
-        processFrameInfo.audioOutputFrame[0] = kernel.run(processFrameInfo.audioInputFrame[0]);
+		audioFrame.left = processFrameInfo.audioInputFrame[0];
+		audioFrame.right = processFrameInfo.audioInputFrame[0];
+		kernel.run(audioFrame);
+		processFrameInfo.audioOutputFrame[0] = audioFrame.left;
 
         return true; /// processed
     }
@@ -195,8 +198,11 @@ bool PluginCore::processAudioFrame(ProcessFrameInfo& processFrameInfo)
        processFrameInfo.channelIOConfig.outputChannelFormat == kCFStereo)
     {
 		// --- pass through code: change this with your signal processing
-        processFrameInfo.audioOutputFrame[0] = kernel.run(processFrameInfo.audioInputFrame[0]);
-        processFrameInfo.audioOutputFrame[1] = kernel.run(processFrameInfo.audioInputFrame[0]);
+		audioFrame.left = processFrameInfo.audioInputFrame[0];
+		audioFrame.right = processFrameInfo.audioInputFrame[0];
+		kernel.run(audioFrame);
+        processFrameInfo.audioOutputFrame[0] = audioFrame.left;
+        processFrameInfo.audioOutputFrame[1] = audioFrame.right;
 
         return true; /// processed
     }
@@ -206,8 +212,11 @@ bool PluginCore::processAudioFrame(ProcessFrameInfo& processFrameInfo)
        processFrameInfo.channelIOConfig.outputChannelFormat == kCFStereo)
     {
 		// --- pass through code: change this with your signal processing
-        processFrameInfo.audioOutputFrame[0] = kernel.run(processFrameInfo.audioInputFrame[0]);
-        processFrameInfo.audioOutputFrame[1] = kernel.run(processFrameInfo.audioInputFrame[1]);
+		audioFrame.left = processFrameInfo.audioInputFrame[0];
+		audioFrame.right = processFrameInfo.audioInputFrame[1];
+		kernel.run(audioFrame);
+        processFrameInfo.audioOutputFrame[0] = audioFrame.left;
+        processFrameInfo.audioOutputFrame[1] = audioFrame.right;
 
         return true; /// processed
     }
@@ -650,9 +659,16 @@ bool PluginCore::initPluginParameters()
 	// **--0xDEA7--**
 
 
+	// --- Declaration of Plugin Parameter Objects 
+	PluginParameter* piParam = nullptr;
+
+	// --- Aux Attributes
+	AuxParameterAttribute auxAttribute;
+
+	// --- RAFX GUI attributes
 
 	// **--0xEDA5--**
-
+	
 	// --- BONUS Parameter
 	// --- SCALE_GUI_SIZE
 	PluginParameter* piParamBonus = new PluginParameter(SCALE_GUI_SIZE, "Scale GUI", "tiny,small,medium,normal,large,giant", "normal");
@@ -677,6 +693,16 @@ NOTES:
 bool PluginCore::initPluginPresets()
 {
 	// **--0xFF7A--**
+
+	// --- Plugin Presets 
+	int index = 0;
+	PresetInfo* preset = nullptr;
+
+	// --- Preset: Factory Preset
+	preset = new PresetInfo(index++, "Factory Preset");
+	initPresetParameters(preset->presetParameters);
+	addPreset(preset);
+
 
 	// **--0xA7FF--**
 
@@ -748,6 +774,3 @@ const char* PluginCore::getAUCocoaViewFactoryName(){ return AU_COCOA_VIEWFACTORY
 pluginType PluginCore::getPluginType(){ return kPluginType; }
 const char* PluginCore::getVSTFUID(){ return kVSTFUID; }
 int32_t PluginCore::getFourCharCode(){ return kFourCharCode; }
-
-
-

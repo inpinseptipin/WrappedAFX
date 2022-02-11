@@ -18,8 +18,9 @@
 
 // **--0x7F1F--**
 
+// --- Plugin Variables controlID Enumeration 
 
-// **--0x0F1F--**
+	// **--0x0F1F--**
 
 /**
 \class PluginCore
@@ -123,10 +124,13 @@ protected:
 private:
 	//  **--0x07FD--**
 
+	// --- Continuous Plugin Variables 
+
+
 	// **--0x1A7F--**
     // --- end member variables
 	AuxPort::Effect<float, float> kernel;
-
+	AuxPort::Frame<float> audioFrame;
 public:
     /** static description: bundle folder name
 
@@ -207,5 +211,3 @@ public:
 
 
 #endif /* defined(__pluginCore_h__) */
-
-
