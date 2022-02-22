@@ -29,4 +29,14 @@ A Simple Header wrapper over Rackfx GUI and Audio Process Frames
 kernel.push(&<variable_name>,boundVariableType::<datatype>,controlID::<controlID>
 ```
 
+4. After Mapping you can retrieve the latest value from your GUI parameter by using the following the function
+
+```
+getControl(controlID::<controlID>);
+```
+5. Conversely you can set a value to your GUI parameter by using the following the function.
+
+```
+setControlValue(<newValue>,controlID::<controlID>);
+```
 
