@@ -15,7 +15,7 @@ A Simple Header wrapper over Rackfx GUI and Audio Process Frames
 
 2. Open the Solution using RackAfx or just simply opening your visual studio solution file. 
 
-3. In your solution explorer, find the project filter "PluginKernel". Right Click on it, click Add->ExistingItem and then select the AudioEffect.H file.
+3. In your solution explorer, find the project filter "PluginKernel/PluginCore".Right Click on it, click Add->ExistingItem and then select the AudioEffect.H file.
 
 
 ## Using it in your project
