@@ -28,7 +28,11 @@ A Simple Header wrapper over Rackfx GUI and Audio Process Frames
 ```
 kernel.push(&<variable_name>,boundVariableType::<datatype>,controlID::<controlID>
 ```
-
+For Example: 
+If you create a knob on the RackAFX prototype panel and set the variable name to gain then you can use the kernel.push() function to map the plugin parameter to the Wrapper class in the following way
+```
+kernel.push(&gain,boundVariableType::kFloat,controlID::gain);
+```
 4. After Mapping you can retrieve the latest value from your GUI parameter by using the following the function
 
 ```
