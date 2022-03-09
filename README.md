@@ -33,12 +33,12 @@ If you create a knob on the RackAFX prototype panel and set the variable name to
 ```
 kernel.push(&gain,boundVariableType::kFloat,controlID::gain);
 ```
-4. After Mapping you can retrieve the latest value from your GUI parameter by using the following the function
+4. After Mapping you can retrieve the latest value from your GUI parameter by using the following function
 
 ```
 getControl(controlID::<controlID>);
 ```
-5. Conversely you can set a value to your GUI parameter by using the following the function.
+5. Conversely you can set a value to your GUI parameter by using the following function.
 
 ```
 setControlValue(<newValue>,controlID::<controlID>);
