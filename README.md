@@ -1,4 +1,4 @@
-# RackAFX-wrapper
+# WrappedFX
 A Simple Header wrapper over Rackfx GUI and Audio Process Frames
 
 ## Installation
