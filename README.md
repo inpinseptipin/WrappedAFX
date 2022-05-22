@@ -1,5 +1,6 @@
 # WrappedFX
 
+![Logo](https://github.com/inpinseptipin/WrappedFX/blob/master/res/Logo.PNG)
 
 ## Installation
 1. Download the repository and extract the folder.
