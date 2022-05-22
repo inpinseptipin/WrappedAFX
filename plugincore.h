@@ -14,7 +14,7 @@
 #define __pluginCore_h__
 
 #include "pluginbase.h"
-#include "AudioEffect.h"
+#include "WrappedFX.h"
 
 // **--0x7F1F--**
 
@@ -129,8 +129,14 @@ private:
 
 	// **--0x1A7F--**
     // --- end member variables
+	/*
+		WrappedFX Class Declarations
+	*/
 	AuxPort::Effect<float, float> kernel;
 	AuxPort::Frame<float> audioFrame;
+	/*
+		End of WrappedFX Class Declarations
+	*/
 public:
     /** static description: bundle folder name
 
