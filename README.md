@@ -80,3 +80,10 @@ setParameter(<newValue>,controlID::<controlID>);
 ```
 ![setPara_3](https://github.com/inpinseptipin/WrappedAFX/blob/master/res/setPara_3.PNG)
 
+# How to Uninstall
+
+1. Copy the contents inside the directory "Uninstall" 
+
+2. Traverse to the RackaFx Installation Folder :  **C:\Program Files (x86)\RackAFX 7.0\BaseClassFiles\RafxTwoPlus\PluginKernel**.
+
+3. Paste the files in the RackAfx installation Folder
