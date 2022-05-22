@@ -1,4 +1,4 @@
-# WrappedFX
+# WrappedAFX
 
 ![Logo](https://github.com/inpinseptipin/WrappedFX/blob/master/res/Logo.PNG)
 
