@@ -2,13 +2,13 @@
 
 
 ## Installation
-1.Download the repository and extract the folder.
+1. Download the repository and extract the folder.
 
-2.Copy the Source and the Header files from the folder.
+2. Copy the Source and the Header files from the folder.
 
-3.Traverse to the RackaFx Installation Folder, "C:\Program Files (x86)\RackAFX 7.0\BaseClassFiles\RafxTwoPlus\PluginKernel".
+3. Traverse to the RackaFx Installation Folder, "C:\Program Files (x86)\RackAFX 7.0\BaseClassFiles\RafxTwoPlus\PluginKernel".
 
-4.Paste the copied files in the RackAfx installation Folder
+4. Paste the copied files in the RackAfx installation Folder
 
 ## How to Include it in the project
 1. Create a new project using RackAfx.
@@ -36,11 +36,11 @@ kernel.push(&gain,boundVariableType::kFloat,controlID::gain);
 4. After Mapping you can retrieve the latest value from your GUI parameter by using the following function
 
 ```
-getControl(controlID::<controlID>);
+getParameter(controlID::<controlID>);
 ```
 5. Conversely you can set a value to your GUI parameter by using the following function.
 
 ```
-setControlValue(<newValue>,controlID::<controlID>);
+setParameter(<newValue>,controlID::<controlID>);
 ```
 
