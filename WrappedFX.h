@@ -2,12 +2,12 @@
 #define AuxPort_AudioEffect_H
 #pragma once
 /*
-*			AuxPort Wrapper over Rackfx
+*			WrappedFX
 			"I tried to make it easier" - inpinseptipin
 
 			BSD 3-Clause License
 
-			Copyright (c) 2022, Satyarth Arora, Teaching Assistant, University of Miami
+			Copyright (c) 2022, Satyarth Arora, Graduate Teaching Assistant, University of Miami
 			All rights reserved.
 
 			Redistribution and use in source and binary forms, with or without
@@ -46,7 +46,7 @@ namespace AuxPort
 /*
 	[Class] Abstraction over AudioFilter class in FXObjects [Don't Mess with it]
 */
-	template<class bufferType, class effectType>
+	template<class sample, class knob>
 	class Filter
 	{
 	public:
@@ -56,14 +56,14 @@ namespace AuxPort
 		{
 			filterParameters.algorithm = type;
 		}
-		void setParameters(const effectType& centerFrequency, const effectType& QFactor, const effectType& boostCut)
+		void setParameters(const knob& centerFrequency, const knob& QFactor)
 		{
 			filterParameters.Q = QFactor;
 			filterParameters.fc = centerFrequency;
-			filterParameters.boostCut_dB = boostCut < 0 ? boostCut : raw2dB(boostCut);
+			filterParameters.boostCut_dB = 1;
 			filter.setParameters(filterParameters);
 		}
-		bufferType process(const bufferType& frame)
+		sample process(const sample& frame)
 		{
 			return filter.processAudioSample(frame);
 		}
@@ -74,18 +74,94 @@ namespace AuxPort
 
 	};
 
+	/*===================================================================================*/
+	/*
+		[Class] A Custom Audio Delay class with Linear Interpolation
+	*/
+	class Delay
+	{
+	public:
+		Delay() = default;
+		~Delay() = default;
+		Delay(const Delay& delay) = default;
+		void setMaxDelay(const uint32_t& sampleRate, const uint32_t& maxDelay)
+		{
+			buffer.resize(sampleRate * maxDelay);
+			this->sampleRate = sampleRate;
+			std::fill(buffer.begin(), buffer.end(), 0);
+			feedbackSample = 0;
+			writeIndex = 0;
+			delayHead = 0;
+			delaySmooth = 0;
+			delay = 0;
+			dry = 0;
+			wet = 0;
+			feedback = 0;
+			delayInSamples = 0;
+
+		}
+		void setParameters(const float& delay, const float& drywet, const float& feedback)
+		{
+			if (this->dry != drywet)
+				this->dry = drywet;
+			if (this->wet != 1 - drywet)
+				this->wet = 1 - drywet;
+			if (this->feedback != feedback / 100)
+				this->feedback = feedback / 100;
+			if (this->delay != delay)
+			{
+				this->delay = this->delaySmooth;
+				this->delaySmooth = delay;
+			}
+		}
+		float processAudioSample(const float& sample)
+		{
+			this->delayInSamples = sampleRate * this->delaySmooth;
+			this->delaySmooth = this->delaySmooth - 0.0001 * (this->delaySmooth - this->delay);
+			buffer[writeIndex++] = sample + feedbackSample;
+			writeIndex %= buffer.size();
+			delayHead = writeIndex - delayInSamples;
+			if (delayHead < 0)
+				delayHead += buffer.size();
+			float polated = doPolation();
+			feedbackSample = polated * this->feedback;
+			return this->dry * sample + this->wet * polated;
+		}
+	private:
+		float doPolation()
+		{
+			int32_t readIndex_0 = int32_t(delayHead);
+			int32_t readIndex_1 = readIndex_0 + 1;
+			if (readIndex_0 >= buffer.size())
+				readIndex_0 -= buffer.size();
+			if (readIndex_1 >= buffer.size())
+				readIndex_1 -= buffer.size();
+			return (buffer[readIndex_0] + buffer[readIndex_1]) / 2;
+		}
+		std::vector<float> buffer;
+		int32_t writeIndex;
+		float delayHead;
+		float delayInSamples;
+		uint32_t sampleRate;
+		float dry;
+		float wet;
+		float feedback;
+		float feedbackSample;
+		float delay;
+		float delaySmooth = { 0 };
+	};
 /*===================================================================================*/
 /*
 	[Struct] Simple Struct for handling two channel Frames [DON'T MESS WITH IT]
 */
-	template<class bufferType>
+	template<class sample>
 	struct Frame
 	{
-		bufferType left;
-		bufferType right;
+		sample left;
+		sample right;
 	};
 
-	template<class bufferType, class effectType>
+	template<class sample, class knob>
 	class Effect
 	{
 	public:
@@ -93,20 +169,20 @@ namespace AuxPort
 /*
 	[Constructor] Safely Allocates the memory
 */
-		Effect<bufferType, effectType>() = default;
+		Effect<sample, knob>() = default;
 /*===================================================================================*/
 /*
 	[Destructor] Safely Deallocates the memory
 */
-		~Effect<bufferType, effectType>() = default;
+		~Effect<sample, knob>() = default;
 /*===================================================================================*/
 /*
 	[Copy Constructor] Safely Copies memory from one Effect Object to another
 */
-		Effect<bufferType, effectType>(const Effect<bufferType, effectType>& kernel) = default;
+		Effect<sample, knob>(const Effect<sample, knob>& kernel) = default;
 /*===================================================================================*/
 /*
-	[Function] Set your Control Addresses (DONT MESS WITH IT)
+	[Function] This function pushes the parameters to the WrappedFX class (DONT MESS WITH IT)
 */
 		void push(void* parameterAddress, const boundVariableType& dataType,int controlNumber)
 		{
@@ -114,19 +190,37 @@ namespace AuxPort
 		}
 /*===================================================================================*/
 /*
-	[Function] Use this to update your FX objects before the processing block
+	[Function] Use this to update your FX objects on a per sample basis [Heavy CPU Usage]
 */
-		void prepareToPlay(const bufferType& sampleRate)
+		void updateParametersBySample()
 		{
-			/*
-				Update Internal Parameters of your FX Objects here
-			*/
+			
 		}
 /*===================================================================================*/
 /*
-	[Function] Implement your Frame DSP Logic here
+	[Function] Use this to update your FX objects on a per buffer basis [Low CPU Usage]
 */
-		void run(Frame<bufferType>& frame)
+		void updateParametersByBuffer()
+		{
+			
+		}
+
+/*===================================================================================*/
+/*
+	[Function] Use this to Reset your FX objects when you switch songs or load the plugin
+*/
+		void reset(const uint32_t& sampleRate)
+		{
+			/*
+				Reset FX objects
+			*/
+			this->sampleRate = sampleRate;
+		}
+/*===================================================================================*/
+/*
+	[Function] Implement your DSP Logic here
+*/
+		void run(Frame<sample>& frame)
 		{	
 			/*===================================================================================*/
 			/*
@@ -134,8 +228,8 @@ namespace AuxPort
 			*/
 			/*===================================================================================*/
 
-			bufferType leftChannel = frame.left;
-			bufferType rightChannel = frame.right;
+			sample leftChannel = frame.left;
+			sample rightChannel = frame.right;
 			/*===================================================================================*/
 			/*===================================================================================*/
 			/*
@@ -165,7 +259,7 @@ namespace AuxPort
 /*
 	[Function] Gets the Control from our nice dandy vector of pointers (DONT MESS WITH IT)
 */
-		effectType getControl(const int& i)
+		knob getParameter(const int& i)
 		{
 			Parameters* para;
 			for (size_t j = 0; j < _controls.size(); j++)
@@ -188,7 +282,7 @@ namespace AuxPort
 /*
 	[Function] Use this function to Update your meters
 */
-		void setControlValue(const double& newValue,const int& i)
+		void setParameter(const double& newValue,const int& i)
 		{
 			Parameters* para;
 			for (size_t j = 0; j < _controls.size(); j++)
@@ -217,13 +311,8 @@ namespace AuxPort
 			int controlNumber;
 		};
 		std::vector<Parameters> _controls;
+		uint32_t sampleRate;
 		
 	};
-
-
-
-
-	
-
 }
 #endif
