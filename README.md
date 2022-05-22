@@ -1,5 +1,5 @@
 # WrappedFX
-A Simple Header wrapper over Rackfx GUI and Audio Process Frames
+
 
 ## Installation
 1.Download the repository and extract the folder.
