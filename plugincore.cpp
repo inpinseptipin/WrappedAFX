@@ -69,7 +69,7 @@ bool PluginCore::reset(ResetInfo& resetInfo)
     // --- save for audio processing
     audioProcDescriptor.sampleRate = resetInfo.sampleRate;
     audioProcDescriptor.bitDepth = resetInfo.bitDepth;
-
+	kernel.reset(resetInfo.sampleRate);
     // --- other reset inits
     return PluginBase::reset(resetInfo);
 }
@@ -164,7 +164,7 @@ bool PluginCore::processAudioFrame(ProcessFrameInfo& processFrameInfo)
 	//     you may name it what you like - this is where GUI control values are cooked
 	//     for the DSP algorithm at hand
 	// updateParameters();
-	
+	kernel.updateParametersBySample();
 
     // --- decode the channelIOConfiguration and process accordingly
     //
@@ -447,7 +447,7 @@ bool PluginCore::updatePluginParameter(int32_t controlID, double controlValue, P
 
     // --- do any post-processing
     postUpdatePluginParameter(controlID, controlValue, paramInfo);
-    kernel.prepareToPlay(audioProcDescriptor.sampleRate);		
+	kernel.updateParametersByBuffer();
     return true; /// handled
 }
 
@@ -471,7 +471,7 @@ bool PluginCore::updatePluginParameterNormalized(int32_t controlID, double norma
 
 	// --- do any post-processing
 	postUpdatePluginParameter(controlID, controlValue, paramInfo);
-	kernel.prepareToPlay(audioProcDescriptor.sampleRate);
+
 	return true; /// handled
 }
 
