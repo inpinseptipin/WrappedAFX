@@ -183,10 +183,10 @@ namespace AuxPort
 /*===================================================================================*/
 /*
 	[Function] This function pushes the parameters to the WrappedFX class (DONT MESS WITH IT)
-*/
-		void push(void* parameterAddress, const boundVariableType& dataType,int controlNumber)
+*/		
+		void push(const std::vector<PluginParameter*> parameterList)
 		{
-			_controls.push_back({parameterAddress,dataType,controlNumber});
+			_pluginParameterList = parameterList;
 		}
 /*===================================================================================*/
 /*
@@ -239,8 +239,7 @@ namespace AuxPort
 			/*
 				Start
 			*/
-			
-
+ 			
 
 			/*
 				End
@@ -255,26 +254,29 @@ namespace AuxPort
 			frame.right = rightChannel;
 		}
 	private:
+/*
+	Declare FX Objects here
+*/
+
 /*===================================================================================*/
 /*
 	[Function] Gets the Control from our nice dandy vector of pointers (DONT MESS WITH IT)
 */
 		knob getParameter(const int& i)
 		{
-			Parameters* para;
-			for (size_t j = 0; j < _controls.size(); j++)
+			for (size_t j = 0; j < _pluginParameterList.size(); j++)
 			{
-				para = &_controls[j];
-				if (para->controlNumber == i)
+				if (_pluginParameterList[j]->getControlID() == i)
 				{
-					if (para->_dataType == boundVariableType::kFloat)
-						return *static_cast<float*>(para->_parameterAddress);
-					if (para->_dataType == boundVariableType::kDouble)
-						return *static_cast<double*>(para->_parameterAddress);
-					if (para->_dataType == boundVariableType::kInt)
-						return *static_cast<int*>(para->_parameterAddress);
-					if (para->_dataType == boundVariableType::kUInt)
-						return *static_cast<uint32_t*>(para->_parameterAddress);
+					if (_pluginParameterList[i]->getBoundVariableType() == boundVariableType::kFloat)
+						return (static_cast<float>(_pluginParameterList[i]->getControlValue()));
+					if (_pluginParameterList[i]->getBoundVariableType() == boundVariableType::kDouble)
+						return (static_cast<double>(_pluginParameterList[i]->getControlValue()));
+					if (_pluginParameterList[i]->getBoundVariableType() == boundVariableType::kInt)
+						return (static_cast<int>(_pluginParameterList[i]->getControlValue()));
+					if (_pluginParameterList[i]->getBoundVariableType() == boundVariableType::kUInt)
+						return (static_cast<uint32_t>(_pluginParameterList[i]->getControlValue()));
+					break;
 				}
 			}
 		}
@@ -282,26 +284,16 @@ namespace AuxPort
 /*
 	[Function] Use this function to Update your meters
 */
-		void setParameter(const double& newValue,const int& i)
+		void setMeterValue(const double& newValue,const int& i)
 		{
-			Parameters* para;
-			for (size_t j = 0; j < _controls.size(); j++)
+			for (size_t j = 0; j < _pluginParameterList.size(); j++)
 			{
-				para = &_controls[j];
-				if (para->controlNumber == i)
+				if (_pluginParameterList[j]->getControlID() == i)
 				{
-					if (para->_dataType == boundVariableType::kFloat)
-						*static_cast<float*>(para->_parameterAddress) = static_cast<float>(newValue);
-					else if (para->_dataType == boundVariableType::kDouble)
-						*static_cast<double*>(para->_parameterAddress) = newValue;
-					else if (para->_dataType == boundVariableType::kInt)
-						*static_cast<int*>(para->_parameterAddress) = static_cast<int>(newValue);
-					else if (para->_dataType == boundVariableType::kUInt)
-						*static_cast<uint32_t*>(para->_parameterAddress) = static_cast<uint32_t>(newValue);
+					_pluginParameterList[j]->setMeterValue(newValue, _pluginParameterList[i]->getBoundVariableType());
 					break;
 				}
-
-			}		
+			}
 		}
 
 		struct Parameters
@@ -310,9 +302,16 @@ namespace AuxPort
 			boundVariableType _dataType;
 			int controlNumber;
 		};
+
+		
 		std::vector<Parameters> _controls;
+		std::vector<PluginParameter*> _pluginParameterList;
 		uint32_t sampleRate;
 		
 	};
+
+	
+
+
 }
 #endif

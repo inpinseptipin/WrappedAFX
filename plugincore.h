@@ -14,8 +14,12 @@
 #define __pluginCore_h__
 
 #include "pluginbase.h"
+/*
+	Wrapped FX [Main Header File]
+*/
+/*****************************************************************************/
 #include "WrappedFX.h"
-
+/*****************************************************************************/
 // **--0x7F1F--**
 
 // --- Plugin Variables controlID Enumeration 
@@ -129,14 +133,16 @@ private:
 
 	// **--0x1A7F--**
     // --- end member variables
-	/*
-		WrappedFX Class Declarations
-	*/
+/*
+	Wrapped FX Code Injection
+*/
+/*****************************************************************************/
 	AuxPort::Effect<float, float> kernel;
 	AuxPort::Frame<float> audioFrame;
 	/*
 		End of WrappedFX Class Declarations
 	*/
+/*****************************************************************************/
 public:
     /** static description: bundle folder name
 

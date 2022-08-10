@@ -164,7 +164,12 @@ bool PluginCore::processAudioFrame(ProcessFrameInfo& processFrameInfo)
 	//     you may name it what you like - this is where GUI control values are cooked
 	//     for the DSP algorithm at hand
 	// updateParameters();
+/*
+	Wrapped FX Code Injection
+*/
+/*****************************************************************************/
 	kernel.updateParametersBySample();
+/*****************************************************************************/
 
     // --- decode the channelIOConfiguration and process accordingly
     //
@@ -185,10 +190,15 @@ bool PluginCore::processAudioFrame(ProcessFrameInfo& processFrameInfo)
        processFrameInfo.channelIOConfig.outputChannelFormat == kCFMono)
     {
 		// --- pass through code: change this with your signal processing
+/*
+	Wrapped FX Code Injection
+*/
+/*****************************************************************************/
 		audioFrame.left = processFrameInfo.audioInputFrame[0];
 		audioFrame.right = processFrameInfo.audioInputFrame[0];
 		kernel.run(audioFrame);
 		processFrameInfo.audioOutputFrame[0] = audioFrame.left;
+/*****************************************************************************/
 
         return true; /// processed
     }
@@ -198,11 +208,16 @@ bool PluginCore::processAudioFrame(ProcessFrameInfo& processFrameInfo)
        processFrameInfo.channelIOConfig.outputChannelFormat == kCFStereo)
     {
 		// --- pass through code: change this with your signal processing
+/*
+	Wrapped FX Code Injection
+*/
+/*****************************************************************************/
 		audioFrame.left = processFrameInfo.audioInputFrame[0];
 		audioFrame.right = processFrameInfo.audioInputFrame[0];
 		kernel.run(audioFrame);
         processFrameInfo.audioOutputFrame[0] = audioFrame.left;
         processFrameInfo.audioOutputFrame[1] = audioFrame.right;
+/*****************************************************************************/
 
         return true; /// processed
     }
@@ -212,11 +227,16 @@ bool PluginCore::processAudioFrame(ProcessFrameInfo& processFrameInfo)
        processFrameInfo.channelIOConfig.outputChannelFormat == kCFStereo)
     {
 		// --- pass through code: change this with your signal processing
+/*
+	Wrapped FX Code Injection
+*/
+/*****************************************************************************/
 		audioFrame.left = processFrameInfo.audioInputFrame[0];
 		audioFrame.right = processFrameInfo.audioInputFrame[1];
 		kernel.run(audioFrame);
         processFrameInfo.audioOutputFrame[0] = audioFrame.left;
         processFrameInfo.audioOutputFrame[1] = audioFrame.right;
+/*****************************************************************************/
 
         return true; /// processed
     }
@@ -447,8 +467,14 @@ bool PluginCore::updatePluginParameter(int32_t controlID, double controlValue, P
 
     // --- do any post-processing
     postUpdatePluginParameter(controlID, controlValue, paramInfo);
+/*
+	Wrapped FX Code Injection
+*/
+/*****************************************************************************/
 	kernel.updateParametersByBuffer();
-    return true; /// handled
+/*****************************************************************************/
+
+	return true; /// handled
 }
 
 /**
@@ -471,7 +497,12 @@ bool PluginCore::updatePluginParameterNormalized(int32_t controlID, double norma
 
 	// --- do any post-processing
 	postUpdatePluginParameter(controlID, controlValue, paramInfo);
-
+/*
+	Wrapped FX Code Injection
+*/
+/*****************************************************************************/
+	kernel.updateParametersByBuffer();
+/*****************************************************************************/
 	return true; /// handled
 }
 
@@ -677,7 +708,14 @@ bool PluginCore::initPluginParameters()
 	// --- create the super fast access array
 	initPluginParameterArray();
 
+/*
+	Wrapped FX Code Injection
+*/
+/*****************************************************************************/
+	kernel.push(pluginParameters);
+/*****************************************************************************/
 	return true;
+
 }
 
 /**
