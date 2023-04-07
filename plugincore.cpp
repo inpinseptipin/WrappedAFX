@@ -164,13 +164,8 @@ bool PluginCore::processAudioFrame(ProcessFrameInfo& processFrameInfo)
 	//     you may name it what you like - this is where GUI control values are cooked
 	//     for the DSP algorithm at hand
 	// updateParameters();
-/*
-	Wrapped FX Code Injection
-*/
-/*****************************************************************************/
-	kernel.updateParametersBySample();
-/*****************************************************************************/
 
+	kernel.updateParametersBySample();
     // --- decode the channelIOConfiguration and process accordingly
     //
 	// --- Synth Plugin:
@@ -190,16 +185,10 @@ bool PluginCore::processAudioFrame(ProcessFrameInfo& processFrameInfo)
        processFrameInfo.channelIOConfig.outputChannelFormat == kCFMono)
     {
 		// --- pass through code: change this with your signal processing
-/*
-	Wrapped FX Code Injection
-*/
-/*****************************************************************************/
-		audioFrame.left = processFrameInfo.audioInputFrame[0];
-		audioFrame.right = processFrameInfo.audioInputFrame[0];
-		kernel.run(audioFrame);
-		processFrameInfo.audioOutputFrame[0] = audioFrame.left;
-/*****************************************************************************/
-
+        frame.left = processFrameInfo.audioInputFrame[0];
+		frame.right = processFrameInfo.audioOutputFrame[0];
+		kernel.run(frame);
+		processFrameInfo.audioOutputFrame[0] = frame.left;
         return true; /// processed
     }
 
@@ -208,17 +197,11 @@ bool PluginCore::processAudioFrame(ProcessFrameInfo& processFrameInfo)
        processFrameInfo.channelIOConfig.outputChannelFormat == kCFStereo)
     {
 		// --- pass through code: change this with your signal processing
-/*
-	Wrapped FX Code Injection
-*/
-/*****************************************************************************/
-		audioFrame.left = processFrameInfo.audioInputFrame[0];
-		audioFrame.right = processFrameInfo.audioInputFrame[0];
-		kernel.run(audioFrame);
-        processFrameInfo.audioOutputFrame[0] = audioFrame.left;
-        processFrameInfo.audioOutputFrame[1] = audioFrame.right;
-/*****************************************************************************/
-
+        frame.left = processFrameInfo.audioInputFrame[0];
+        frame.right = processFrameInfo.audioInputFrame[0];
+		kernel.run(frame);
+		processFrameInfo.audioOutputFrame[0] = frame.left;
+		processFrameInfo.audioOutputFrame[1] = frame.right;
         return true; /// processed
     }
 
@@ -227,17 +210,11 @@ bool PluginCore::processAudioFrame(ProcessFrameInfo& processFrameInfo)
        processFrameInfo.channelIOConfig.outputChannelFormat == kCFStereo)
     {
 		// --- pass through code: change this with your signal processing
-/*
-	Wrapped FX Code Injection
-*/
-/*****************************************************************************/
-		audioFrame.left = processFrameInfo.audioInputFrame[0];
-		audioFrame.right = processFrameInfo.audioInputFrame[1];
-		kernel.run(audioFrame);
-        processFrameInfo.audioOutputFrame[0] = audioFrame.left;
-        processFrameInfo.audioOutputFrame[1] = audioFrame.right;
-/*****************************************************************************/
-
+        frame.left = processFrameInfo.audioInputFrame[0];
+        frame.right = processFrameInfo.audioInputFrame[1];
+		kernel.run(frame);
+		processFrameInfo.audioOutputFrame[0] = frame.left;
+		processFrameInfo.audioOutputFrame[1] = frame.right;
         return true; /// processed
     }
 
@@ -467,14 +444,9 @@ bool PluginCore::updatePluginParameter(int32_t controlID, double controlValue, P
 
     // --- do any post-processing
     postUpdatePluginParameter(controlID, controlValue, paramInfo);
-/*
-	Wrapped FX Code Injection
-*/
-/*****************************************************************************/
 	kernel.updateParametersByBuffer();
-/*****************************************************************************/
 
-	return true; /// handled
+    return true; /// handled
 }
 
 /**
@@ -497,12 +469,8 @@ bool PluginCore::updatePluginParameterNormalized(int32_t controlID, double norma
 
 	// --- do any post-processing
 	postUpdatePluginParameter(controlID, controlValue, paramInfo);
-/*
-	Wrapped FX Code Injection
-*/
-/*****************************************************************************/
 	kernel.updateParametersByBuffer();
-/*****************************************************************************/
+
 	return true; /// handled
 }
 
@@ -699,7 +667,7 @@ bool PluginCore::initPluginParameters()
 	// --- RAFX GUI attributes
 
 	// **--0xEDA5--**
-	
+
 	// --- BONUS Parameter
 	// --- SCALE_GUI_SIZE
 	PluginParameter* piParamBonus = new PluginParameter(SCALE_GUI_SIZE, "Scale GUI", "tiny,small,medium,normal,large,giant", "normal");
@@ -708,14 +676,8 @@ bool PluginCore::initPluginParameters()
 	// --- create the super fast access array
 	initPluginParameterArray();
 
-/*
-	Wrapped FX Code Injection
-*/
-/*****************************************************************************/
 	kernel.push(pluginParameters);
-/*****************************************************************************/
 	return true;
-
 }
 
 /**

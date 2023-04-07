@@ -587,11 +587,6 @@ public:
 
 		return *this;
 	}
-
-
-/*
-	Wrapped FX Code Injection
-*/
 	void setMeterValue(const double& meterValue, const boundVariableType& type)
 	{
 		if (type == boundVariableType::kFloat)
@@ -603,6 +598,8 @@ public:
 		if (type == boundVariableType::kUInt)
 			*boundVariableDouble = static_cast<uint32_t>(meterValue);
 	}
+
+
 protected:
     int controlID = -1;							///< the ID value for the parameter
     std::string controlName = "ControlName";	///< the name string for the parameter

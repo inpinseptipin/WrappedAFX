@@ -239,7 +239,7 @@ namespace AuxPort
 			/*
 				Start
 			*/
- 			
+			
 
 			/*
 				End
@@ -268,14 +268,14 @@ namespace AuxPort
 			{
 				if (_pluginParameterList[j]->getControlID() == i)
 				{
-					if (_pluginParameterList[i]->getBoundVariableType() == boundVariableType::kFloat)
-						return (static_cast<float>(_pluginParameterList[i]->getControlValue()));
-					if (_pluginParameterList[i]->getBoundVariableType() == boundVariableType::kDouble)
-						return (static_cast<double>(_pluginParameterList[i]->getControlValue()));
-					if (_pluginParameterList[i]->getBoundVariableType() == boundVariableType::kInt)
-						return (static_cast<int>(_pluginParameterList[i]->getControlValue()));
-					if (_pluginParameterList[i]->getBoundVariableType() == boundVariableType::kUInt)
-						return (static_cast<uint32_t>(_pluginParameterList[i]->getControlValue()));
+					if (_pluginParameterList[j]->getBoundVariableType() == boundVariableType::kFloat)
+						return (static_cast<float>(_pluginParameterList[j]->getControlValue()));
+					if (_pluginParameterList[j]->getBoundVariableType() == boundVariableType::kDouble)
+						return (static_cast<double>(_pluginParameterList[j]->getControlValue()));
+					if (_pluginParameterList[j]->getBoundVariableType() == boundVariableType::kInt)
+						return (static_cast<int>(_pluginParameterList[j]->getControlValue()));
+					if (_pluginParameterList[j]->getBoundVariableType() == boundVariableType::kUInt)
+						return (static_cast<uint32_t>(_pluginParameterList[j]->getControlValue()));
 					break;
 				}
 			}
