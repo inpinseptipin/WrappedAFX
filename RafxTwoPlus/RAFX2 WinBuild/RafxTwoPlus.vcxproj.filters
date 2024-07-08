@@ -104,9 +104,9 @@
     <ClInclude Include="..\PluginKernel\pluginparameter.h">
       <Filter>Plugin Kernel\Plugin Core</Filter>
     </ClInclude>
-    <ClCompile Include="..\PluginKernel\WrappedAFX.h">
+    <ClInclude Include="..\PluginKernel\WrappedFX.h">
       <Filter>Plugin Kernel\Plugin Core</Filter>
-    </ClCompile>
+    </ClInclude>
     <ClInclude Include="..\PluginObjects\fxobjects.h">
       <Filter>PluginObjects</Filter>
     </ClInclude>

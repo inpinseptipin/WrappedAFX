@@ -196,7 +196,7 @@
     <ClInclude Include="..\PluginKernel\plugingui.h" />
     <ClInclude Include="..\PluginKernel\pluginparameter.h" />
     <ClInclude Include="..\PluginKernel\pluginstructures.h" />
-    <ClCompile Include="..\PluginKernel\WrappedAFX.h" />	
+    <ClInclude Include="..\PluginKernel\WrappedFX.h" />
     <ClInclude Include="..\PluginObjects\fxobjects.h" />
     <ClInclude Include="..\PluginObjects\filters.h" />
     <ClInclude Include="..\RAFX2 Source\RackAFXDLL.h" />
