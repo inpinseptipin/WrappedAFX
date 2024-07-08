@@ -2,12 +2,12 @@
 #define AuxPort_AudioEffect_H
 #pragma once
 /*
-*			WrappedFX
+*			WrappedAFX
 			"I tried to make it easier" - inpinseptipin
 
 			BSD 3-Clause License
 
-			Copyright (c) 2022, Satyarth Arora, Graduate Teaching Assistant, University of Miami
+			Copyright (c) 2024, Satyarth Arora
 			All rights reserved.
 
 			Redistribution and use in source and binary forms, with or without
@@ -171,7 +171,6 @@ namespace AuxPort
 			/*
 				Start
 			*/
-			setMeterValue(getParameter(controlID::Gain),controlID::gainValue);
 
 			/*
 				End
