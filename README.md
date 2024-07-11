@@ -32,4 +32,5 @@ getParameter(controlID::<controlID>);
 ```
 setMeterValue(<newValue>,controlID::<controlID>);
 ```
-
+## Uninstall
+WrappedAFX is installed on RackAFX 7.0 as a standalone patch and thus gets registered as its own entity in the Windows Registry, Therefore WrappedAFX can be uninstalled using the "add/remove" programs on Windows.
