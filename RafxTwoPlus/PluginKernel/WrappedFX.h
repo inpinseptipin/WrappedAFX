@@ -7,7 +7,7 @@
 
 			BSD 3-Clause License
 
-			Copyright (c) 2024, Satyarth Arora
+			Copyright (c) 2024, AuxAudio Enterprises LLP
 			All rights reserved.
 
 			Redistribution and use in source and binary forms, with or without
@@ -34,6 +34,7 @@
 			CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 			OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 			OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
 
 */
 #include <vector>
