@@ -6,7 +6,7 @@
 WrappedAFX is a simple header wrapper that consolidates all the functionality offered by RackAFX and provides a simple interface to write an audio plugin.
 
 ### How to Install
-Download the Installer from [here](https://github.com/inpinseptipin/WrappedAFX/releases/download/v2.0/WrappedAFX_2.0_Installer.exe)
+Download the Installer from [here](https://github.com/inpinseptipin/WrappedAFX/releases/download/v3.0/WrappedAFX_3.0.exe)
 
 ### Library Documentation
 Documentation can be found [here](https://inpinseptipin.github.io/WrappedAFX/)
